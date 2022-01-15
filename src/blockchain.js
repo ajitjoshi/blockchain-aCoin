@@ -1,6 +1,6 @@
 
-const SHA256 = require('crypto-js/sha256');
-const EC = require('elliptic').ec;
+const SHA256 = require('crypto-js/sha256'); //npm install --save crypto-js
+const EC = require('elliptic').ec; //npm install elliptic
 const ec = new EC('secp256k1');
 
 
