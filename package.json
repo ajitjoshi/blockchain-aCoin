@@ -1,0 +1,27 @@
+{
+  "name": "blockchain-acoin",
+  "version": "1.0.0",
+  "description": "Blockchain implementation using JavaScript",
+  "main": "./src/main.js",
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "elliptic": "^6.5.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nyc mocha tests/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajitjoshi/blockchain-aCoin.git"
+  },
+  "keywords": [
+    "blockchain"
+  ],
+  "author": "Ajit Joshi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajitjoshi/blockchain-aCoin/issues"
+  },
+  "homepage": "https://github.com/ajitjoshi/blockchain-aCoin#readme"
+}
