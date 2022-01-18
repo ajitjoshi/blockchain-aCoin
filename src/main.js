@@ -27,5 +27,5 @@ aCoin.minePendingTransactions(myWalletAddress);
 
 console.log("My account balance : " + aCoin.getBalanceOf(myWalletAddress));
 
-aCoin.chain[1].transactions[0].amount = 1;
-console.log("Is chain valid? " + aCoin.isChainValid());
+//aCoin.chain[1].transactions[0].amount = 1;
+//console.log("Is chain valid? " + aCoin.isChainValid());

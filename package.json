@@ -4,7 +4,9 @@
   "description": "Blockchain implementation using JavaScript",
   "main": "./src/main.js",
   "dependencies": {
+    "crypto": "^1.0.1",
     "crypto-js": "^4.1.1",
+    "debug": "^4.3.3",
     "elliptic": "^6.5.4"
   },
   "devDependencies": {},

@@ -1,8 +1,8 @@
 
-const SHA256 = require('crypto-js/sha256'); //npm install --save crypto-js
+const crypto = require('crypto'); //npm install --save crypto
 const EC = require('elliptic').ec; //npm install elliptic
 const ec = new EC('secp256k1');
-
+const debug = require('debug')('acoin:blockchain');
 
 class Transaction {
 
@@ -10,11 +10,12 @@ class Transaction {
         this.fromAddress = fromAddress;
         this.toAddress = toAddress;
         this.amount = amount;
+        this.timestamp = Date.now();
     }
     
     //this is to sign the key
     calculateHash() {
-        return SHA256(this.fromAddress + this.toAddress + this.amount).toString();
+        return crypto.createHash('sha256').update(this.fromAddress + this.toAddress + this.amount + this.timestamp).digest('hex');
     }
 
     signTransaction(signingKey) {
@@ -48,13 +49,13 @@ class Block {
         this.timestamp = timestamp;
         this.transactions = transactions;
         this.previousHash = previousHash;
-        this.hash = '';
+        this.hash = this.calculateHash();
         this.nonce = 0;
     }
 
     //this is for block tracking
     calculateHash() {
-        return SHA256(this.previousHash + this.timestamp + JSON.stringify(this.transactions) + this.nonce).toString();
+        return crypto.createHash('sha256').update(this.previousHash + this.timestamp + JSON.stringify(this.transactions) + this.nonce).digest('hex');
     }
 
     mineBlock(difficulty) {
@@ -119,7 +120,19 @@ class Blockchain {
             throw new Error("Cannot add invalid transaction to the chain");
         }
 
-        this.pendingTransactions.push(transaction);
+        if (transaction.amount <= 0) {
+            throw new Error('Transaction amount should be higher than 0');
+          }
+          
+          // Making sure that the amount sent is not greater than existing balance
+          /*
+          if (this.getBalanceOf(transaction.fromAddress) < transaction.amount) {
+            throw new Error('Not enough balance');
+          } */
+      
+          this.pendingTransactions.push(transaction);
+          debug('transaction added: %s', transaction);
+
     }
 
     getBalanceOf(address) {
@@ -135,6 +148,21 @@ class Blockchain {
             }
         }
         return balance;
+    }
+
+    getAllTransactionsForWallet(address) {
+        const txs = [];
+    
+        for (const block of this.chain) {
+          for (const tx of block.transactions) {
+            if (tx.fromAddress === address || tx.toAddress === address) {
+              txs.push(tx);
+            }
+          }
+        }
+    
+        debug('get transactions for wallet count: %s', txs.length);
+        return txs;
     }
 
     isChainValid() {
