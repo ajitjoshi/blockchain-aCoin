@@ -1,5 +1,5 @@
 
-const crypto = require('crypto'); //npm install --save crypto
+const crypto = require('crypto');
 const EC = require('elliptic').ec; //npm install elliptic
 const ec = new EC('secp256k1');
 const debug = require('debug')('acoin:blockchain');
@@ -25,6 +25,7 @@ class Transaction {
         }
 
         const hashTx = this.calculateHash();
+        console.log("Transaction hash : " + hashTx);
         const sig = signingKey.sign(hashTx, 'base64');
         this.signature = sig.toDER('hex');
 
@@ -49,7 +50,7 @@ class Block {
         this.timestamp = timestamp;
         this.transactions = transactions;
         this.previousHash = previousHash;
-        this.hash = this.calculateHash();
+        this.blockHash = this.calculateHash();
         this.nonce = 0;
     }
 
@@ -59,11 +60,12 @@ class Block {
     }
 
     mineBlock(difficulty) {
-        while(this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
+        console.log(this.blockHash);
+        while(this.blockHash.substring(0, difficulty) !== Array(difficulty + 1).join("0")) {
             this.nonce++;
-            this.hash = this.calculateHash();
+            this.blockHash = this.calculateHash();
         }
-        console.log("Block mined : " + this.hash);
+        console.log("Block mined : " + this.blockHash);
     }
 
     hasValidTransactions(){
@@ -173,11 +175,11 @@ class Blockchain {
             if (!currentBlock.hasValidTransactions()) {
                 return false;
             }
-            if (currentBlock.hash !== currentBlock.calculateHash()){
+            if (currentBlock.blockHash !== currentBlock.calculateHash()){
                 return false;
             }
 
-            if (currentBlock.previousHash !== previousBlock.hash) {
+            if (currentBlock.previousHash !== previousBlock.blockHash) {
                 return false;
             }
         }
