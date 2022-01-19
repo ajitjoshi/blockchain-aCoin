@@ -1,17 +1,15 @@
 {
-  "name": "blockchain-acoin",
-  "version": "1.0.0",
-  "description": "Blockchain implementation using JavaScript",
-  "main": "./src/main.js",
+  "name": "acoin",
+  "version": "1.0.1",
+  "description": "JavaScript implementation of Blockchain - educational purpose only",
+  "main": "blockchain.js",
   "dependencies": {
-    "crypto": "^1.0.1",
-    "crypto-js": "^4.1.1",
     "debug": "^4.3.3",
     "elliptic": "^6.5.4"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "nyc mocha tests/*.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
