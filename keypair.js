@@ -1,27 +1,22 @@
-// Node.js program to demonstrate the
-// crypto.generateKeyPairSync() method
-  
-// Including generateKeyPairSync from crypto module
-const { generateKeyPairSync } = require('crypto');
-  
-// Including publicKey and  privateKey from 
-// generateKeyPairSync() method with its 
-// parameters
+// Including publicKey and  privateKey from generateKeyPairSync() method with its parameters
 const { generateKeyPair } = require('crypto');
-generateKeyPair('rsa', {
-  modulusLength: 1024,
+generateKeyPair('ec', {
+  namedCurve: 'secp256k1',   // Options
   publicKeyEncoding: {
     type: 'spki',
-    format: 'pem'
+    format: 'der'
   },
   privateKeyEncoding: {
     type: 'pkcs8',
-    format: 'pem',
-    cipher: 'aes-256-cbc',
-    passphrase: 'top secret'
+    format: 'der',
   }
 }, (err, publicKey, privateKey) => {
+  if (err) {
+    console.log (err);
+  } else {
   // Handle errors and use the generated key pair.
-  console.log (err + " : - : " + publicKey.toString('hex') + " : - : " + privateKey);
+  console.log ("PUBLIC KEY : " + publicKey.toString('hex') + "\n\n PRIVATE KEY : " + privateKey.toString('hex'));
+  }
+
 });
   
