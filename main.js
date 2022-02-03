@@ -8,8 +8,6 @@ Public Key : 0409aeea5c4e55a251bf8ae7cd9936d8f76f31789a0196a9f522b206b97406ff95a
 
 Private Key : d4b1650810df516ebb8e32f16673bcfec203866162caa27d822cbe67bb88abf1
 */
-//https://youtu.be/fRV6cGXVQ4I?t=565
-//https://www.youtube.com/watch?v=AQV0WNpE_3g : Angular App
 
 const myKey = ec.keyFromPrivate('d4b1650810df516ebb8e32f16673bcfec203866162caa27d822cbe67bb88abf1');
 const myWalletAddress = myKey.getPublic('hex');
