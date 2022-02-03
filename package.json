@@ -2,7 +2,7 @@
   "name": "acoin",
   "version": "1.0.1",
   "description": "JavaScript implementation of Blockchain - educational purpose only",
-  "main": "blockchain.js",
+  "main": "main.js",
   "dependencies": {
     "debug": "^4.3.3",
     "elliptic": "^6.5.4"
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ajitjoshi/blockchain-aCoin.git"
+    "url": "git+https://github.com/ajitjoshi/blockchain-core-js.git"
   },
   "keywords": [
     "blockchain"
@@ -21,7 +21,7 @@
   "author": "Ajit Joshi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ajitjoshi/blockchain-aCoin/issues"
+    "url": "https://github.com/ajitjoshi/blockchain-core-js/issues"
   },
-  "homepage": "https://github.com/ajitjoshi/blockchain-aCoin#readme"
+  "homepage": "https://github.com/ajitjoshi/blockchain-core-js#readme"
 }
