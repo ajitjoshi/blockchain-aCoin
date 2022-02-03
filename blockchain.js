@@ -15,7 +15,9 @@ class Transaction {
     
     //this is to sign the key
     calculateHash() {
-        return crypto.createHash('sha256').update(this.fromAddress + this.toAddress + this.amount + this.timestamp).digest('hex');
+        return crypto.createHash('sha256')
+            .update(this.fromAddress + this.toAddress + this.amount + this.timestamp)
+            .digest('hex');
     }
 
     signTransaction(signingKey) {
@@ -46,6 +48,7 @@ class Transaction {
 }
 
 class Block {
+    
     constructor(timestamp, transactions, previousHash = '') {
         this.timestamp = timestamp;
         this.transactions = transactions;
@@ -56,7 +59,9 @@ class Block {
 
     //this is for block tracking
     calculateHash() {
-        return crypto.createHash('sha256').update(this.previousHash + this.timestamp + JSON.stringify(this.transactions) + this.nonce).digest('hex');
+        return crypto.createHash('sha256')
+            .update(this.previousHash + this.timestamp + JSON.stringify(this.transactions) + this.nonce)
+            .digest('hex');
     }
 
     mineBlock(difficulty) {
@@ -90,7 +95,7 @@ class Blockchain {
     }
 
     createGenesisBlock() {
-        return new Block(Date.now(), [], "0");
+        return new Block("01-01-2021", [], "0");
     }
 
     getLatestBlock() {
@@ -126,14 +131,8 @@ class Blockchain {
             throw new Error('Transaction amount should be higher than 0');
           }
           
-          // Making sure that the amount sent is not greater than existing balance
-          /*
-          if (this.getBalanceOf(transaction.fromAddress) < transaction.amount) {
-            throw new Error('Not enough balance');
-          } */
-      
-          this.pendingTransactions.push(transaction);
-          debug('transaction added: %s', transaction);
+        this.pendingTransactions.push(transaction);
+        debug('transaction added: %s', transaction);
 
     }
 
