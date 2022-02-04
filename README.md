@@ -1,5 +1,7 @@
 # Blockchain Core PoC (JavaScript)
 
+***This respository is only for learning & educational purpose.***
+
 This project demonstrate the core blockchain functionality. It creates new blockchain, allows to create new transactions and add transactions to a block. Mine a block with Proof-of-Work algorithm & put the block on blockchain.
 
 There are three classes defined in the PoC, for simplicity its within a single JavaScript file.
